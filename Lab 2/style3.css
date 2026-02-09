@@ -1,0 +1,73 @@
+/* Page Background */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    /* Nice Gradient Background */
+    background: linear-gradient(135deg, #667eea, #764ba2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Form Card */
+.login-form {
+    background-color: #ffffff;
+    /* Clean white card */
+    padding: 44px;
+    width: 320px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Heading */
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Labels */
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Input Fields */
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+/* Button */
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 25px;
+    border: none;
+    background-color: #667eea;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Hover Effect */
+.login-form button:hover {
+    background-color: #5a67d8;
+}
+.signup-text {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #667eea;
+    cursor: pointer;
+}

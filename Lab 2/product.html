@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16 Product Cards Same Size</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f1f1;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+            color: #101010;
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+        h1 {
+            font-size: 90%;
+            margin-bottom: 2px;
+
+        }
+
+        h2 {
+            font-size: 250%;
+            margin-bottom: 2px;
+        }
+
+        h3 {
+            font-size: 300%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 15px;
+            border: 2px solid #aebabc;
+            box-shadow: 0 4px 10px #ffffff;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .img-box {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            flex-shrink: 0;
+        }
+
+        .title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #555;
+            height: 60px;
+            overflow: hidden;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: green;
+            margin: 10px 0;
+            flex-shrink: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .btn {
+            background: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 8px;
+            margin-top: auto;
+
+        }
+
+        :root {
+            --bg: #060606;
+            --accent: #2da9ad;
+            --muted: #dbeafe;
+            --text: #ffffff;
+            --glass: rgba(255, 255, 255, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            width: 100%;
+            background: var(--bg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-search input {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .cart-btn {
+            font-size: 20px;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            gap: 10px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: white;
+            display: grid;
+            place-items: center;
+            border-radius: 100px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .img-box {
+            transition: 0.4s ease-in-out;
+        }
+
+
+        .card:hover .img-box {
+            background-image: var(--hover-img);
+        }
+
+        .card:hover .img-box {
+            transform: scale(1.08);
+
+        }
+
+        a {
+            position: relative;
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 3px;
+            background: #fff;
+            transition: width 0.3s ease;
+        }
+
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .hamburger .bar {
+            width: 22px;
+            height: 2px;
+            background: white;
+            margin: 4px 0;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: #03112f;
+            padding: 12px;
+        }
+
+        .mobile-menu a {
+            display: block;
+            margin: 8px 0;
+            padding: 8px;
+            color: var(--muted);
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .mobile-menu a:hover {
+            background: var(--glass);
+            color: rgb(252, 248, 248);
+        }
+
+        @media(max-width: 850px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 0px;
+            background-color: #10bed9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(38, 255, 0, 0.3);
+            z-index: 9999;
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            transition: 0.3s ease;
+        }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .footer {
+            background: var(--bg);
+            color: var(--text);
+            padding: 30px 10px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin: 15px 0;
+        }
+
+        .footer-links a {
+            margin: 0 12px;
+            color: #aaa;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copy {
+            font-size: 13px;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+
+
+            <a href="#" class="brand">
+                <div class="logo-mark">ዘ</div>
+                ᕼᗩՏᗴᗴᗷ
+            </a>
+
+
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+
+                <!-- Search box -->
+                <div class="nav-search">
+                    <input type="text" placeholder="Search...">
+                </div>
+
+                <!-- Cart icon -->
+                <a href="#" class="cart-btn">🛒</a>
+            </div>
+
+            <button class="hamburger" id="hambtn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">About</a>
+            <a
+                href="#">Contact</a>http://127.0.0.1:3000/product.html?serverWindowId=f7e16175-135d-4410-915f-079b3ba94f49
+    </nav>
+    <h1>BEST SELLING</h1>
+    <h2>SMART</h2>
+    <h3>WATCHES</h3>
+
+    <div class="grid">
+
+        <!-- Product 1 -->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/Luna-_5_3.webp?v=1752225993&width=800');">
+            </div>
+            <div class="title"><strong>Smart Watch</strong></div>
+            <div class="description">Fitness tracking, heart-rate monitoring.br1.39" HD Display.</div>
+            <div class="price">Rs.5,000</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/ignite-black-02.png?v=1762943589&width=800');">
+            </div>
+            <div class="title"><strong>Ignite Smartwatch</strong></div>
+            <div class="description">Up to 9 Days Battery</div>
+            <div class="price">Rs.6,000</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/lunar_Blue-Leather_1.webp?v=1764227871&width=800');">
+            </div>
+            <div class="title"><strong>Rotating Bezel Smartwatch</strong></div>
+            <div class="description"></div>
+            <div class="price">Rs.7,000</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/Jewel_1_1.webp?v=1745067598&width=800');">
+            </div>
+            <div class="title"><strong>Jewel Smartwatch</strong></div>
+            <div class="description">Diamond Cut Design | Female Health Tracker</div>
+            <div class="price">Rs.11,500</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/Visionary_Starlight-Silicone_1_a7706397-974f-479a-9934-13ea5327f478.webp?v=1764661691&width=800');">
+            </div>
+            <div class="title"><strong>Visionary Smartwatch</strong></div>
+            <div class="description">Detailed Health Analysis</div>
+            <div class="price">Rs.15,000</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/Coffee_1.webp?v=1752432598&width=500');">
+            </div>
+            <div class="title"><strong>Orbit 2 Smartwatch</strong></div>
+            <div class="description">1.38 Wide Display</div>
+            <div class="price">Rs.6,999</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/2_d73c18c2-9b28-4842-a9a9-44e0dffad77b.webp?v=1756127463&width=500');">
+            </div>
+            <div class="title"><strong>Regal AI Smartwatch</strong></div>
+            <div class="description">Generative AI | Conversational AI</div>
+            <div class="price">Rs.16,999</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/Navigator_Orange-2.webp?v=1764949382&width=500');">
+            </div>
+            <div class="title"><strong>Navigator Smartwatch</strong></div>
+            <div class="description">Built-in GPS Tracking</div>
+            <div class="price">Rs.14,999</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!-- Product 9 -->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/2_bdb30c06-4a67-45f3-8b36-0dedad4579a1.jpg?v=1754740631&width=500');">
+            </div>
+            <div class="title"><strong>Crown Smartwatch</strong></div>
+            <div class="description">True Always On</div>
+            <div class="price">Rs.11,999</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/BlackGold_2.webp?v=1762335085&width=900');">
+            </div>
+            <div class="title"><strong>Legacy Smartwatch</strong></div>
+            <div class="description">Refined & Robust Design | Vibrant AMOLED Display</div>
+            <div class="price">Rs.14,999</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!--Produt 11-->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/GoldBlack_2.webp?v=1765658265&width=800');">
+            </div>
+            <div class="title"><strong>Lgacy Smartwatch</strong></div>
+            <div class="description">True Always On</div>
+            <div class="price">Rs.14,999</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!--Produt 12-->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/armour-black-01_8d56acb0-773d-4e58-815c-5ab36400fe7f.webp?v=1742630454&width=500');">
+            </div>
+            <div class="title"><strong>Armour Smartwatch</strong></div>
+            <div class="description">True Always On</div>
+            <div class="price">Rs.8,999</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!--Produt 13-->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/02_14d4c7f7-c21c-49be-8519-5f340b58ebd5.webp?v=1734007033&width=500');">
+            </div>
+            <div class="title"><strong>Revoltt Smartwatch</strong></div>
+            <div class="description">True Always On</div>
+            <div class="price">Rs.8,999</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!--Produt 14-->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/LunaPro_3.webp?v=1755331884&width=500');">
+            </div>
+            <div class="title"><strong>Luna Pro</strong></div>
+            <div class="description">True Always On</div>
+            <div class="price">Rs.9,999</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!--Produt 15-->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/Silver-vogue.webp?v=1742632877&width=500');">
+            </div>
+            <div class="title"><strong>Vogue Smartwatch</strong></div>
+            <div class="description">True Always On</div>
+            <div class="price">Rs.13,999</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+        <!--Produt 16-->
+        <div class="card">
+            <div class="img-box"
+                style="background-image: url('https://zerolifestyle.co/cdn/shop/files/white2_ea78e8a1-72c3-4e9a-8711-5f9671c88ffd.png?v=1717769775&width=500');">
+            </div>
+            <div class="title"><strong>Vision Smartwatch</strong></div>
+            <div class="description">True Always On</div>
+            <div class="price">Rs.10,999</div>
+            <button class="btn">Buy Now</button>
+        </div>
+
+
+    </div>
+    <a href="https://wa.me/+923192601036?text=Hello%20I%20need%20more%20information" class="whatsapp-float"
+        target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    </a>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>ᕼᗩՏᗴᗴᗷ STORE</h3>
+            <p>Premium Smart Watches with Quality & Trust</p>
+
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Contact</a>
+            </div>
+
+
+
+            <p class="copy">© 2025 Haseeb Store. All Rights Reserved</p>
+        </div>
+    </footer>
+
+
+</body>
+<script>
+    const btn = document.getElementById("hambtn");
+    const menu = document.getElementById("mobile-menu");
+    btn.addEventListener("click", () => {
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+    });
+</script>
+
+</html>

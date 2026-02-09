@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Haseeb Products</title>
+    <link style="border-radius: 1000%; " rel="icon" href="/abc-removebg-preview.png">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e5d4d4;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding-top: 40px;
+        }
+
+        .card {
+            width: 300px;
+            padding: 20px;
+            border-radius: 14px;
+            border: 2px solid #4087d3;
+            box-shadow: 0px 4px 10px #12a0bc;
+            margin: 0px;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            background-image: url("https://id-live-01.slatic.net/p/28e2db565aec93af98b201751608d0b5.jpg");
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+        }
+
+        .product-title {
+            color: #b5aaaa;
+            margin-top: 15px;
+            font-size: 22px;
+        }
+
+        .product-title::before {
+            content: "★ ";
+            color: #ff9900;
+        }
+
+        .description {
+            color: #b5aaaa;
+            margin: 10px 0;
+        }
+
+        .price {
+            color: #008000;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            background: #0077cc;
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #005fa3;
+        }
+
+
+        .myVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: -1;
+
+            margin: 0;
+            padding: 0;
+        }
+
+       
+    </style>
+</head>
+
+<body>
+    <video autoplay muted loop class="myVideo">
+        <source src="videoplayback.mp4" type="video/mp4">
+    </video>
+
+    <div class="card">
+        <div class="product-img"></div>
+
+
+        <h2 class="product-title">Smart Watch</h2>
+
+        <p class="description">
+            A stylish smart watch with fitness tracking and long battery life.
+        </p>
+
+      
+        <a href="product.html" class="btn">Buy Now</a>
+
+
+    </div>
+    
+
+
+</body>
+
+</html>
